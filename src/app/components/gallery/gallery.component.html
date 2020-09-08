@@ -1,0 +1,29 @@
+<div class="contailer-fluid">
+  <div class="row" style="margin-top: 5%;">
+    <div class="col"></div>
+    <div class="col-md-4 mb-md-0 mb-6">
+        <form [formGroup]="gallryTemp" (ngSubmit)="onSubmit(gallryTemp.value)">
+            <div class="input-group form-group"  >
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" accept="image/*" class="custom-file-input" formControlName="img_url" (change)="onFileSelect($event)">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+              <div>
+                <button class="btn btn-primary mr-1">Upload</button>
+              </div>
+            </div>
+            <div class="text-center" *ngIf="imageUrl !== null">
+              <p>{{selectedImage.name}}</p>
+              <img [src]="imageUrl" height= "150px" width="100px" />
+            </div>
+          </form>    
+        </div>
+        <div class="col">
+          <button class="btn btn-primary mr-1" [routerLink]="['/gallery/list']" routerLinkActive="router-link-active" >List</button>
+        </div>
+  </div>
+</div>
+

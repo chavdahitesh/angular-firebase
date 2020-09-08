@@ -1,0 +1,41 @@
+<h1 class="display-4">EMP. Register</h1>
+<form #form="ngForm" autocomplete="off" [formGroup]="empFormGroup" (ngSubmit)="onSubmit(empFormGroup.value)">
+  <input type="hidden" name="id">
+  <div class="form-group">
+    <input name="fullName" class="form-control" placeholder="Full name" required formControlName='fullname'>
+    <div *ngIf="empFormGroup.controls.fullname.invalid && empFormGroup.controls.fullname.touched" class="validation-error">This field is required.</div>
+  </div>
+  <div class="form-group">
+    <input name="position"  class="form-control" placeholder="Position" formControlName="position">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input name="empCode" class="form-control" placeholder="Emp. code" formControlName="empcode">
+    </div>
+    <div class="form-group  col-md-6">
+      <input name="mobile" class="form-control" placeholder="Mobile" formControlName="mobile">
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="empFormGroup.invalid" class="btn btn-lg btn-block btn-info">SUBMIT</button>
+  </div>
+
+</form>
+
+<table class="table table-hover">
+    <thead>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Mobile</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of list">
+        <td (click)="onEdit(emp)">{{emp.empCode}} - {{emp.fullName}}</td>
+        <td (click)="onEdit(emp)">{{emp.position}}</td>
+        <td (click)="onEdit(emp)">{{emp.mobile}}</td>
+        <td><a class="btn text-danger" (click)="onDelete(emp.id)"><i class="fa fa-trash"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+

@@ -1,0 +1,14 @@
+<header>
+	<h1 style="color: black;">Responsive Image Gallery</h1>
+</header>
+
+<div class="-fx-image-gal">
+	<div class="-fx-gal-item" *ngFor="let item of images;let i = index">
+		<div class="-fx-gal-image-thumb" tabindex="1">
+			<a href="{{item.image}}" target="_blank">
+				<img src="{{item.image}}" />
+			</a>
+		</div>
+	</div><!-- /-fx-gal-item -->
+
+</div>
