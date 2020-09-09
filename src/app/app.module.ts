@@ -9,7 +9,6 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import{FormsModule} from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component'
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +20,8 @@ import { HeaderComponent } from './components/header/header.component'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

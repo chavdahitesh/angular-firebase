@@ -4,8 +4,7 @@
     <!--Section heading-->
     <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
     <!--Section description-->
-    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
-        a matter of hours to help you.</p>
+    <p class="text-center w-responsive mx-auto mb-5">This is demo app for Crud Operation of Angular with Firebase</p>
 
     <div class="row container-fluid">
         <!--Grid column-->
@@ -65,10 +64,11 @@
                 
                 <div class="text-center text-md-left">
                     <!-- <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a> -->
-                    <button class='btn btn-primary' *ngIf="contactForm.valid">send</button>
+                    <button class='btn btn-primary' *ngIf="contactForm.valid && !isEdit">send</button>
                 </div>
                 <div class="status"></div>
             </form>
+            <button class='btn btn-success' *ngIf="isEdit" (click)="updateContact(contactForm.value)">update</button>
         </div>
         <!--Grid column-->
 
@@ -91,7 +91,27 @@
         <!--Grid column-->
 
     </div>
-
+    <table class="table table-hover">
+        <thead>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contactList ;let i = index;">
+            <td>{{contact.name}}</td>
+            <td>{{contact.email}}</td>
+            <td>
+              <a class="btn text-info" (click)="onEdit(contact)">
+                <i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a class="btn text-danger" (click)="onDelete(contact)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
 </section>
 
 

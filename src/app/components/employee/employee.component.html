@@ -1,41 +1,58 @@
-<h1 class="display-4">EMP. Register</h1>
-<form #form="ngForm" autocomplete="off" [formGroup]="empFormGroup" (ngSubmit)="onSubmit(empFormGroup.value)">
-  <input type="hidden" name="id">
+<h1 class="display-12 text-center">Employee Register</h1>
+<form autocomplete="off" [formGroup]="empFormGroup" (ngSubmit)="onSubmit(empFormGroup.value)">
+  <!-- <input type="hidden" name="id" formControlName="id" value="" [ngModel]="idValue"> -->
   <div class="form-group">
     <input name="fullName" class="form-control" placeholder="Full name" required formControlName='fullname'>
-    <div *ngIf="empFormGroup.controls.fullname.invalid && empFormGroup.controls.fullname.touched" class="validation-error">This field is required.</div>
+    <!-- <div *ngIf="empFormGroup.controls.fullname.invalid && empFormGroup.controls.fullname.touched" class="validation-error">This field is required.</div> -->
   </div>
   <div class="form-group">
-    <input name="position"  class="form-control" placeholder="Position" formControlName="position">
+    <input name="position" class="form-control" placeholder="Position" formControlName="position" required>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <input name="empCode" class="form-control" placeholder="Emp. code" formControlName="empcode">
+      <input name="empCode" class="form-control" placeholder="Emp. code" formControlName="empcode" required>
     </div>
     <div class="form-group  col-md-6">
-      <input name="mobile" class="form-control" placeholder="Mobile" formControlName="mobile">
+      <input name="mobile" class="form-control" placeholder="Mobile" formControlName="mobile" required>
     </div>
   </div>
   <div class="form-group">
-    <button type="submit" [disabled]="empFormGroup.invalid" class="btn btn-lg btn-block btn-info">SUBMIT</button>
+    <button type="submit" [disabled]="empFormGroup.invalid" class="btn btn-lg btn-block btn-info"
+      *ngIf="!isEdit">SUBMIT</button>
   </div>
-
 </form>
+<div class="row">
+  <div class="col col-8">
+    <button [disabled]="empFormGroup.invalid" class="btn btn-lg btn-block btn-success" *ngIf="isEdit"
+      (click)="onUpdate(empFormGroup.value)">UPDATE</button>
+  </div>
+  <div class="col col-4">
+    <button type="reset" [disabled]="empFormGroup.invalid" class="btn btn-lg btn-block btn-primary" *ngIf="isEdit"
+      (click)="resetForm()">RESET</button>
+  </div>
+</div>
 
 <table class="table table-hover">
-    <thead>
-      <th>Name</th>
-      <th>Position</th>
-      <th>Mobile</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let emp of list">
-        <td (click)="onEdit(emp)">{{emp.empCode}} - {{emp.fullName}}</td>
-        <td (click)="onEdit(emp)">{{emp.position}}</td>
-        <td (click)="onEdit(emp)">{{emp.mobile}}</td>
-        <td><a class="btn text-danger" (click)="onDelete(emp.id)"><i class="fa fa-trash"></i></a></td>
-      </tr>
-    </tbody>
-  </table>
-
+  <thead>
+    <th>Code </th>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Mobile</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employees ;let i = index;">
+      <td>{{emp.empcode}}</td>
+      <td>{{emp.fullname}}</td>
+      <td>{{emp.position}}</td>
+      <td>{{emp.mobile}}</td>
+      <td>
+        <a class="btn text-info" (click)="onEdit(emp)">
+          <i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <a class="btn text-danger" (click)="onDelete(emp)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

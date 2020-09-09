@@ -18,7 +18,12 @@ export class ImagelistComponent implements OnInit {
 
   getList() {
     this.imgServie.getImageDetailList().snapshotChanges().subscribe(res => {
-      this.images = res.map(m => { return m.payload.val() });
+      this.images =[]
+      res.forEach(item => {
+        let a = item.payload.toJSON();
+        a['$key'] = item.key;
+        this.images.push(a)
+      })
     })
   }
 

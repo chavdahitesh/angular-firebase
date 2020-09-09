@@ -1,2 +1,35 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-md-block bg-gray sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">
+              <i class="fa fa-address-book"></i>Contact
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/gallery" routerLinkActive="active">
+              <i class="fa fa-image"></i>Gallery
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/employee" routerLinkActive="active">
+              <i class="fa fa-user"></i>Employee
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <router-outlet></router-outlet>
+        <footer>
+          Created by Hitesh Chavda
+        </footer>
+      </div>
+    </main>
+
+  </div>
+</div>
